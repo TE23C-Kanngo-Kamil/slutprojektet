@@ -5,8 +5,9 @@ using Raylib_cs;
 
     Mål:
     - Rymdskepp (spelaren) som kan röras med piltangenterna
-    - Fiender som kommer fram från toppen av skärmen
+    - Fiender som finns vid toppen av skärmen
     - System där man kan skjuta fienderna med mellanslag
+    - Lägga till stjärnor runt om i backgrunden
 
 */
 
@@ -25,14 +26,10 @@ float playerSpeed = 5.0f;
 while (Raylib.WindowShouldClose() == false)
 {
     // --- Hantera spelarens rörelse ---
-    // Om vänsterpil är nedtryckt och spelaren inte är vid vänstra kanten:
-    //     Flytta spelaren åt vänster
-    // Om högerpil är nedtryckt och spelaren inte är vid högra kanten:
-    //     Flytta spelaren åt höger
-    // Om uppåtpil är nedtryckt och spelaren inte är vid övre kanten:
-    //     Flytta spelaren uppåt
-    // Om nedåtpil är nedtryckt och spelaren inte är vid nedre kanten:
-    //     Flytta spelaren nedåt
+
+    // Om en piltangent hålls nere:
+    // Flytta spelaren i den riktningen
+    // Begränsa så att spelaren inte går utanför skärmen
 
     if (Raylib.IsKeyDown(KeyboardKey.Left) && playerPosition.X > 0)
     {
@@ -54,18 +51,70 @@ while (Raylib.WindowShouldClose() == false)
     // --- Rita spelet ---
     // Börja rita skärmen
     // Rensa bakgrunden (svart)
-    // Rita spelaren som en grön triangel vid startposition
+    // Rita spelarens skepp
+    // Rita fiender vid toppen
     // Avsluta ritningen
 
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.Black);
 
-    Raylib.DrawTriangle(
-        new Vector2(playerPosition.X, playerPosition.Y - 20),
-        new Vector2(playerPosition.X - 20, playerPosition.Y + 20),
-        new Vector2(playerPosition.X + 20, playerPosition.Y + 20),
-        Color.Green
-    );
+    // Rita spelarens skepp
+    // Rita olika rektanglar för att skapa en skeppform
+
+    // Basen
+    Raylib.DrawRectangle((int)playerPosition.X - 10, (int)playerPosition.Y + 10, 20, 10, Color.Orange);
+    Raylib.DrawRectangle((int)playerPosition.X - 6, (int)playerPosition.Y + 20, 12, 8, Color.Red);
+
+    // Huvudkropp
+    Raylib.DrawRectangle((int)playerPosition.X - 5, (int)playerPosition.Y - 10, 10, 20, Color.LightGray);
+
+    // Vingar
+    Raylib.DrawRectangle((int)playerPosition.X - 15, (int)playerPosition.Y, 10, 15, Color.Gray);
+    Raylib.DrawRectangle((int)playerPosition.X + 5, (int)playerPosition.Y, 10, 15, Color.Gray);
+
+    // Cockpit
+    Raylib.DrawRectangle((int)playerPosition.X - 3, (int)playerPosition.Y - 14, 6, 6, Color.SkyBlue);
+
+    // Rita aliens
+    // Definiera ett pixelmönster för en alien
+    // Rita 4 stycken aliens på rad med detta mönster
+
+    int alienSize = 6;  // Storlek på varje "pixel"
+    int startY = 100;
+    int[] alienXPositions = { 100, 250, 400, 550 }; // Positionerna för varje alien
+
+    // Pixelmönstret för en alien (1 = grön pixel, 0 = tom)
+    int[,] alienPixels = new int[,]
+    {
+    {0,0,1,0,0,0,0,1,0,0},
+    {0,0,0,1,0,0,1,0,0,0},
+    {0,0,1,1,1,1,1,1,0,0},
+    {0,1,1,0,1,1,0,1,1,0},
+    {1,1,1,1,1,1,1,1,1,1},
+    {1,0,1,1,1,1,1,1,0,1},
+    {1,0,1,0,0,0,0,1,0,1},
+    {0,0,0,1,0,0,1,0,0,0}
+    };
+
+    foreach (int baseX in alienXPositions)
+    {
+        for (int y = 0; y < alienPixels.GetLength(0); y++)
+        {
+            for (int x = 0; x < alienPixels.GetLength(1); x++)
+            {
+                if (alienPixels[y, x] == 1)
+                {
+                    Raylib.DrawRectangle(
+                        baseX + x * alienSize,
+                        startY + y * alienSize,
+                        alienSize,
+                        alienSize,
+                        Color.Green
+                    );
+                }
+            }
+        }
+    }
 
     Raylib.EndDrawing();
 }
