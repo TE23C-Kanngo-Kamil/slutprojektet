@@ -96,11 +96,11 @@ while (Raylib.WindowShouldClose() == false)
     {0,0,0,1,0,0,1,0,0,0}
     };
 
-    foreach (int baseX in alienXPositions)
+    foreach (int baseX in alienXPositions) // Gå igenom varje X-position i alienXPositions
     {
-        for (int y = 0; y < alienPixels.GetLength(0); y++)
+        for (int y = 0; y < alienPixels.GetLength(0); y++) // Gå igenom varje rad i alien-mönstret (8)
         {
-            for (int x = 0; x < alienPixels.GetLength(1); x++)
+            for (int x = 0; x < alienPixels.GetLength(1); x++) // Gå igenom varje kolumn i raden (10)
             {
                 if (alienPixels[y, x] == 1)
                 {
