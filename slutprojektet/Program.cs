@@ -3,11 +3,11 @@ using Raylib_cs;
 
 /* 
 
-    Mål:
-    - Rymdskepp (spelaren) som kan röras med piltangenterna
-    - Fiender som finns vid toppen av skärmen
-    - System där man kan skjuta fienderna med mellanslag
-    - Lägga till stjärnor runt om i backgrunden
+    - När man håller ner piltangenterna så rörs ditt rymdskepp runt, men kan inte åka utanför skärmen
+    - Fiender ska komma fram från toppen av skärmen och stanna där som man sedan ska skjuta mot
+    - Man ska skjuta fienderna med mellanslag, varje gång mellanslag trycks ner skjuter man en raket, man kan skjuta varannan sek
+    - Om rymdskeppet kommer i kontakt med ett fiende så förlorar man spelet
+    - Efter att 20 fiender har besegrats vinner man spelet
 
 */
 
@@ -26,7 +26,7 @@ float playerSpeed = 5.0f;
 while (Raylib.WindowShouldClose() == false)
 {
     // --- Hantera spelarens rörelse ---
-    // PSEUDOKOD:
+
     // Om vänsterpil trycks ner och spelaren inte är vid vänsterkanten
     //    Flytta spelaren åt vänster
     // Om högerpil trycks ner och spelaren inte är vid högerkanten
@@ -54,7 +54,7 @@ while (Raylib.WindowShouldClose() == false)
     }
 
     // --- Rita spelet ---
-    // PSEUDOKOD:
+
     // Börja rita skärmen
     // Sätt bakgrundsfärgen till svart
     // Rita spelarens skepp (flera rektanglar i olika färger)
@@ -65,7 +65,7 @@ while (Raylib.WindowShouldClose() == false)
     Raylib.ClearBackground(Color.Black);
 
     // Rita spelarens skepp
-    // PSEUDOKOD:
+
     // Rita basen
     // Rita huvudkroppen
     // Rita vingar
@@ -86,7 +86,7 @@ while (Raylib.WindowShouldClose() == false)
     Raylib.DrawRectangle((int)playerPosition.X - 3, (int)playerPosition.Y - 14, 6, 6, Color.SkyBlue);
 
     // Rita aliens
-    // PSEUDOKOD:
+
     // För varje X-position där en alien ska ritas:
     //    För varje rad i mönstret:
     //        För varje kolumn i raden:
