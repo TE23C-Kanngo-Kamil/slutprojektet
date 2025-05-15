@@ -26,10 +26,15 @@ float playerSpeed = 5.0f;
 while (Raylib.WindowShouldClose() == false)
 {
     // --- Hantera spelarens rörelse ---
-
-    // Om en piltangent hålls nere:
-    // Flytta spelaren i den riktningen
-    // Begränsa så att spelaren inte går utanför skärmen
+    // PSEUDOKOD:
+    // Om vänsterpil trycks ner och spelaren inte är vid vänsterkanten
+    //    Flytta spelaren åt vänster
+    // Om högerpil trycks ner och spelaren inte är vid högerkanten
+    //    Flytta spelaren åt höger
+    // Om uppåtpil trycks ner och spelaren inte är högst upp
+    //    Flytta spelaren uppåt
+    // Om nedåtpil trycks ner och spelaren inte är längst ner
+    //    Flytta spelaren nedåt
 
     if (Raylib.IsKeyDown(KeyboardKey.Left) && playerPosition.X > 0)
     {
@@ -49,17 +54,22 @@ while (Raylib.WindowShouldClose() == false)
     }
 
     // --- Rita spelet ---
+    // PSEUDOKOD:
     // Börja rita skärmen
-    // Rensa bakgrunden (svart)
-    // Rita spelarens skepp
-    // Rita fiender vid toppen
+    // Sätt bakgrundsfärgen till svart
+    // Rita spelarens skepp (flera rektanglar i olika färger)
+    // Rita fiender i ett mönster
     // Avsluta ritningen
 
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.Black);
 
     // Rita spelarens skepp
-    // Rita olika rektanglar för att skapa en skeppform
+    // PSEUDOKOD:
+    // Rita basen
+    // Rita huvudkroppen
+    // Rita vingar
+    // Rita cockpit
 
     // Basen
     Raylib.DrawRectangle((int)playerPosition.X - 10, (int)playerPosition.Y + 10, 20, 10, Color.Orange);
@@ -76,8 +86,12 @@ while (Raylib.WindowShouldClose() == false)
     Raylib.DrawRectangle((int)playerPosition.X - 3, (int)playerPosition.Y - 14, 6, 6, Color.SkyBlue);
 
     // Rita aliens
-    // Definiera ett pixelmönster för en alien
-    // Rita 4 stycken aliens på rad med detta mönster
+    // PSEUDOKOD:
+    // För varje X-position där en alien ska ritas:
+    //    För varje rad i mönstret:
+    //        För varje kolumn i raden:
+    //            Om värdet är 1:
+    //                Rita en grön pixel på rätt position
 
     int alienSize = 6;  // Storlek på varje "pixel"
     int startY = 100;
