@@ -3,11 +3,11 @@ using Raylib_cs;
 
 /* 
 
-    - När man håller ner piltangenterna så rörs ditt rymdskepp runt, men kan inte åka utanför skärmen
-    - Fiender ska komma fram från toppen av skärmen och stanna där som man sedan ska skjuta mot
-    - Man ska skjuta fienderna med mellanslag, varje gång mellanslag trycks ner skjuter man en raket, man kan skjuta varannan sek
-    - Om rymdskeppet kommer i kontakt med ett fiende så förlorar man spelet
-    - Efter att 20 fiender har besegrats vinner man spelet
+    När man håller ner piltangenterna så rörs ditt rymdskepp runt, men kan inte åka utanför skärmen
+    Fiender ska komma fram från toppen av skärmen och stanna där som man sedan ska skjuta mot
+    Man ska skjuta fienderna med mellanslag, varje gång mellanslag trycks ner skjuter man en raket, man kan skjuta varannan sekund
+    Om rymdskeppet kommer i kontakt med ett fiende så förlorar man spelet
+    Efter att 20 fiender har besegrats vinner man spelet
 
 */
 
